@@ -1,0 +1,75 @@
+import { ApiError } from "../utils/ApiError.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import { UnRegisteredUser } from "../models/unRegisteredUser.model.js";
+import { User } from "../models/user.model.js";
+dotenv.config();
+
+const verifyJWT_email = asyncHandler(async (req, res, next) => {
+  try {
+    console.log("\n******** Inside verifyJWT_email Function ********");
+
+    const token = req.cookies?.accessTokenRegistration || req.header("Authorization")?.replace("Bearer ", "");
+    if (!token) {
+      console.log("token not found");
+      throw new ApiError(401, "Please Login");
+    }
+
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (!decodedToken?.email) {
+      throw new ApiError(401, "Invalid token content");
+    }
+
+    // Create the user object directly from the decoded token
+    const user = {
+      email: decodedToken.email,
+      name: decodedToken.name,
+      picture: decodedToken.picture,
+    };
+
+    console.log("Attaching user from token:", user);
+    req.user = user; // Attach the user object to the request
+    next(); // Proceed to the next step
+  } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      console.log("Token Expired");
+      throw new ApiError(401, "Login Again, Session Expired");
+    } else {
+      console.log("Error in VerifyJWT Middleware:", error);
+      throw new ApiError(401, error.message || "Invalid Access Token");
+    }
+  }
+});
+
+const verifyJWT_username = asyncHandler(async (req, res, next) => {
+  try {
+    console.log("\n******** Inside verifyJWT_username Function ********");
+
+    const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
+    if (!token) {
+      console.log("token not found");
+      throw new ApiError(401, "Please Login");
+    }
+
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findOne({ username: decodedToken?.username }).select("-__v -createdAt -updatedAt");
+    if (!user) {
+      throw new ApiError(401, "Invalid Access Token");
+    }
+    req.user = user;
+    next();
+  } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      console.log("Token Expired");
+      throw new ApiError(401, "Please Login");
+    } else {
+      console.log("Error in VerifyJWT Middleware:", error);
+      throw new ApiError(401, error.message || "Invalid Access Token");
+    }
+  }
+});
+
+// ✅ THIS IS THE LINE THAT NEEDS TO BE ADDED BACK
+export { verifyJWT_email, verifyJWT_username };
