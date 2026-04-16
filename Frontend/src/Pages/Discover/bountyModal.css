@@ -1,0 +1,39 @@
+.bounty-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.bounty-container {
+  background: #2a2a2a;
+  color: white;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.bounty-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}

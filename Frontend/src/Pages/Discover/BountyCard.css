@@ -1,0 +1,84 @@
+/* Ee hosa Bounty Card'ge olle styling */
+.bounty-card-container {
+  width: 100%;
+  max-width: 300px; /* Nimma ProfileCard'ge match aago thara */
+  margin: 1rem;
+  background-color: #3a3a3a; /* Nimma theme'ge match maadoke */
+  color: #fbf1a4; /* Nimma theme'ge match maadoke */
+  border: 1px solid #555;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.bounty-card-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.bounty-title {
+  font-family: "Josefin Sans", sans-serif;
+  color: #ffffff; /* Swaalpa bright'aagi */
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.bounty-coins {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fbf1a4; /* Golden color coins'ge */
+  margin-bottom: 1rem !important;
+}
+
+.bounty-description {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  height: 60px; /* Ella card'galu onde size iroke */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 3 line maatra torisu */
+  -webkit-box-orient: vertical;
+}
+
+.bountyskills {
+  margin-top: 1rem;
+}
+
+.bountyskills h6 {
+  font-size: 0.8rem;
+  color: #ccc;
+  text-transform: uppercase;
+}
+
+.bountyskill-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.bountyskill-box {
+  background-color: #555;
+  border-radius: 5px;
+  padding: 3px 8px;
+}
+
+.skill {
+  font-size: 0.8rem;
+  color: #f0f0f0;
+}
+
+.bounty-view-button {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: #fbf1a4;
+  color: #333;
+  border: none;
+  font-weight: 600;
+}
+
+.bounty-view-button:hover {
+  background-color: #e6d98a;
+  color: #000;
+}

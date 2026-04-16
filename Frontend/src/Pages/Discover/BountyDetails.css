@@ -1,0 +1,86 @@
+:root{
+  --card-bg: #ffffff;
+  --card-text: #1f2937; /* dark gray */
+  --muted: #4b5563;
+  --accent: #3bb4a1;
+  --tag-bg: #fbf1a4;
+}
+
+.bounty-details-wrapper{
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: transparent; /* keep discover dark background visible */
+}
+
+.bounty-detail-card{
+  width: 100%;
+  max-width: 880px;
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+  padding: 1rem;
+  border: 1px solid rgba(15,23,42,0.06);
+}
+
+.bounty-detail-card .card-body{
+  padding: 1.25rem;
+}
+
+.bounty-detail-card .card-title,
+.bounty-detail-card .bounty-title{
+  font-size: 1.5rem; /* 24px */
+  font-weight: 700;
+  color: var(--card-text);
+  margin-bottom: 0.5rem;
+}
+
+.bounty-detail-card .card-subtitle,
+.bounty-detail-card .bounty-coins{
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.bounty-detail-card p,
+.bounty-detail-card .card-text{
+  font-size: 1rem; /* responsive via rem */
+  line-height: 1.5;
+  color: var(--card-text);
+}
+
+.bounty-tags{ display:flex; gap:0.5rem; flex-wrap:wrap; margin:0.5rem 0 1rem 0; }
+.bounty-tag{
+  background: var(--tag-bg);
+  color: var(--card-text);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight:600;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.bounty-detail-card .btn{
+  margin-top: 0.5rem;
+}
+
+/* Make sure small screens look good */
+@media (max-width: 992px){
+  .bounty-detail-card{ max-width: 720px; padding: 0.75rem; }
+  .bounty-detail-card .card-body{ padding: 1rem; }
+}
+
+@media (max-width: 576px){
+  .bounty-details-wrapper{ min-height: calc(100vh - 56px); padding: 1rem; }
+  .bounty-detail-card{ max-width: 100%; border-radius: 10px; }
+  .bounty-detail-card .card-title{ font-size: 1.25rem; }
+  .bounty-detail-card p, .bounty-detail-card .card-text{ font-size: 0.95rem; }
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .bounty-detail-card{ transition: none; }
+}
